@@ -8,7 +8,8 @@ class Planet:
     SCALE = 250 / AU  # 1AU = 100 pixels
     TIMESTEP = 3600 * 24  # 1 day
 
-    def __init__(self, x, y, radius, color, mass, y_vel):
+    def __init__(self, name, x, y, radius, color, mass, y_vel):
+        self.name = name
         self.original_x = x
         self.original_y = y
         self.x = x
@@ -55,7 +56,7 @@ class Planet:
         if other.sun:
             self.distance_to_sun = distance
 
-        force = self.G * self.mass * other.mass / distance ** 2
+        force = (self.G * self.mass * other.mass) / (distance ** 2)
         theta = math.atan2(distance_y, distance_x)
         force_x = math.cos(theta) * force
         force_y = math.sin(theta) * force
